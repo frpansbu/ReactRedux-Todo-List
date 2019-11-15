@@ -6,6 +6,8 @@ import ItemsList from './ItemsList.js'
 import { firestoreConnect } from 'react-redux-firebase';
 
 import {getFirestore} from 'redux-firestore';
+import {Modal, Button} from 'react-materialize';
+
 
 class ListScreen extends Component {
     state = {
@@ -41,7 +43,17 @@ class ListScreen extends Component {
 
         return (
             <div className="container white">
-                <h5 className="grey-text text-darken-3">Todo List</h5>
+                <div className="seperator">
+                    <h3 className="grey-text text-darken-3">Todo List
+                    <Modal header="Modal Header"
+                    trigger={<Button id = "list_trash" 
+                    data-target="delete-modal" >&#128465;</Button>}
+                    //add actions(buttons) here
+                    >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    </Modal>
+                    </h3>
+                </div>
                 <div className="input-field">
                     <label htmlFor="email">Name</label>
                     <input className="active" type="text" name="name" id="name" onChange={this.handleChange} defaultValue={todoList.name} />
