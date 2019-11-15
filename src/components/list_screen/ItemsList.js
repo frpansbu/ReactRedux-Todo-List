@@ -17,6 +17,9 @@ class ItemsList extends React.Component {
                         <ItemCard todoList={todoList} item={item} />
                     );})
                 }
+                <div className = "add-item green lighten-4" id = "add-item-button">
+                    +
+                </div>
             </div>
         );
     }
