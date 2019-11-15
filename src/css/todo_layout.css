@@ -49,6 +49,15 @@ form button, form h5 {
   top: 5%;
   font-size: 32px;
 }
+.task-header:hover{
+  color: whitesmoke
+}
+.status-header:hover{
+  color: whitesmoke
+}
+.due-date-header:hover{
+  color: whitesmoke
+}
 
 .due-date-header, .card-due{
   position: absolute;
