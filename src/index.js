@@ -7,6 +7,7 @@ import './css/todo_style.css'
 import * as serviceWorker from './serviceWorker';
 
 import ReactReduxFirebaseApp from './store/ReactReduxFirebaseApp'
+import "typeface-roboto"
 
 ReactDOM.render(
   <ReactReduxFirebaseApp />, document.getElementById('root')
