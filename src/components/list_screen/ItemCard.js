@@ -9,7 +9,7 @@ class ItemCard extends React.Component {
                     <span className="card-title">{item.description}</span>    
                     <span className = "card-assigned">Assigned To: {item.assigned_to}</span>
                     <span className = "card-due">{item.due_date}</span>
-                    <sapn className = "card-status">Test</sapn>
+                    <span className = "card-status">Test</span>
                 </div>
             </div>
         );

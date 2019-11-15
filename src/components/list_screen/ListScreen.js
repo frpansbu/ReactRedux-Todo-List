@@ -34,6 +34,10 @@ class ListScreen extends Component {
         }
     }
 
+    deleteAction = (e) =>{
+        console.log(this.props.todoList.id);
+    }
+
     render() {
         const auth = this.props.auth;
         const todoList = this.props.todoList;
@@ -45,12 +49,18 @@ class ListScreen extends Component {
             <div className="container white">
                 <div className="seperator">
                     <h3 className="grey-text text-darken-3">Todo List
-                    <Modal header="Modal Header"
+                    <Modal header="Delete List?"
                     trigger={<Button id = "list_trash" 
                     data-target="delete-modal" >&#128465;</Button>}
-                    //add actions(buttons) here
+                    actions = {
+                        <div>
+                            <Button modal="close" waves="light" className="red darken-2" onClick={ this.deleteAction.bind(this) }>Yes</Button>
+                            <Button flat modal="close" waves="light">No</Button>   
+                        </div>
+                    }
                     >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    <h5>Are you sure you want to delete this list?</h5>
+                    This list will not be retrievable.
                     </Modal>
                     </h3>
                 </div>
