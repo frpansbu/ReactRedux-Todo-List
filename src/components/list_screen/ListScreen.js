@@ -35,7 +35,10 @@ class ListScreen extends Component {
     }
 
     deleteAction = (e) =>{
-        console.log(this.props.todoList.id);
+        const fireStore = getFirestore();
+        const todoList = this.props.todoList;
+        this.props.history.push("/");
+        fireStore.collection('todoLists').doc(todoList.id).delete();
     }
 
     render() {
@@ -74,8 +77,8 @@ class ListScreen extends Component {
                 </div>
                 <div className = "column-headers red lighten-2">
                     <div className = "task-header">Task</div>
-                    <div className = "due-date-header">Due Date</div>
-                    <div className = "status-header">Status</div>
+                    <div className = "due-date-header" >Due Date</div>
+                    <div className = "status-header" >Status</div>
                 </div>
                 <ItemsList todoList={todoList} />
             </div>
