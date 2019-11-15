@@ -1,8 +1,10 @@
 import React from 'react';
+import {Icon, Button} from 'react-materialize'
 
 class ItemCard extends React.Component {
     render() {
         const { item } = this.props;  
+        
         return (
             <div className="card z-depth-0 todo-list-link pink lighten-4">
                 <div className="card-content grey-text text-darken-3">
@@ -10,6 +12,16 @@ class ItemCard extends React.Component {
                     <span className = "card-assigned">Assigned To: {item.assigned_to}</span>
                     <span className = "card-due">{item.due_date}</span>
                     <span className = "card-status">Test</span>
+                    <Button
+                        floating
+                        fab={{direction: 'left'}}
+                        className="red"
+                        small
+                        >
+                        <Button floating large className="blue">&#x21e7;</Button>
+                        <Button floating large className="green">&#x21e9;</Button>
+                        <Button floating large className="red">&#10005;</Button>
+                    </Button>
                 </div>
             </div>
         );

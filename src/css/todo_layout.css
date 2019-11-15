@@ -95,6 +95,14 @@ form button, form h5 {
   font-size: 35px;
 }
 
+.fixed-action-btn {
+  position: absolute;
+  left: 92%;
+  top: 35%;
+  padding: 0%;
+}
+
+
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
