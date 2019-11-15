@@ -34,6 +34,58 @@ form button, form h5 {
   margin: 20px 0;
 }
 
+.column-headers{
+  position: relative;
+  height: 50px;
+  grid-row-gap: 0px;
+  grid-column-gap: 50px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.task-header, .due-date-header, .status-header{
+  position: absolute;
+  top: 5%;
+  font-size: 32px;
+}
+
+.due-date-header, .card-due{
+  position: absolute;
+  left: 35%;
+}
+.status-header, .card-status{
+  position: absolute;
+  left: 65%
+}
+.task-header{
+  position: absolute;
+  left: 3%;
+}
+#list_trash {
+  position: absolute;
+  left: 90%;
+  
+  
+}
+.seperator {
+  position: relative;
+}
+.add-item{
+  position: relative;
+  height: 50px;
+  grid-row-gap: 0px;
+  grid-column-gap: 50px;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+#add-item-button{
+  text-align: center;
+  vertical-align: center;
+  font-size: 35px;
+}
+
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),
 input[type=password]:not(.browser-default):focus:not([readonly]),
