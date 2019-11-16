@@ -102,6 +102,17 @@ form button, form h5 {
   padding: 0%;
 }
 
+.list_item_card_completed, .list_item_card_not_completed{
+  position: absolute;
+  left: 65%
+}
+.list_item_card_completed{
+  color:green;
+}
+.list_item_card_not_completed{
+  color:red; 
+}
+
 
 input[type=text]:not(.browser-default):focus:not([readonly]),
 input[type=email]:not(.browser-default):focus:not([readonly]),

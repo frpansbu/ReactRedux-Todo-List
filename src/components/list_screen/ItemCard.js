@@ -4,6 +4,12 @@ import {Icon, Button} from 'react-materialize'
 class ItemCard extends React.Component {
     render() {
         const { item } = this.props;  
+        let statusText = "Completed";
+        let statusClass = "list_item_card_completed";
+        if (!item.completed){
+            statusClass = "list_item_card_not_completed";
+            statusText = "Pending";
+        }
         
         return (
             <div className="card z-depth-0 todo-list-link pink lighten-4">
@@ -11,7 +17,7 @@ class ItemCard extends React.Component {
                     <span className="card-title">{item.description}</span>    
                     <span className = "card-assigned">Assigned To: {item.assigned_to}</span>
                     <span className = "card-due">{item.due_date}</span>
-                    <span className = "card-status">Test</span>
+                    <span className = {statusClass}>{statusText}</span>
                     <Button
                         floating
                         fab={{direction: 'left'}}
