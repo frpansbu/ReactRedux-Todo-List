@@ -55,6 +55,9 @@ class ListScreen extends Component {
             temp.sort((a,b) => (a.description > b.description) ? -1 : 1);
             this.setState({incTask: false})
         }
+        for(var i = 0; i < temp.length; i++){
+            temp[i].index = i;
+        }
         fireStore.collection("todoLists").doc(todoList.id).update({
             items: temp
         });
@@ -71,6 +74,9 @@ class ListScreen extends Component {
             temp.sort((a,b) => (a.due_date > b.due_date) ? -1 : 1);
             this.setState({incDate: false})
         }
+        for(var i = 0; i < temp.length; i++){
+            temp[i].index = i;
+        }
         fireStore.collection("todoLists").doc(todoList.id).update({
             items: temp
         });
@@ -86,6 +92,9 @@ class ListScreen extends Component {
         }else{
             temp.sort((a,b) => (a.completed > b.completed) ? -1 : 1);
             this.setState({incStatus: false})
+        }
+        for(var i = 0; i < temp.length; i++){
+            temp[i].index = i;
         }
         fireStore.collection("todoLists").doc(todoList.id).update({
             items: temp
