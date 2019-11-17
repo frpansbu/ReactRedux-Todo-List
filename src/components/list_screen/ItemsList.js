@@ -5,7 +5,9 @@ import ItemCard from './ItemCard';
 import { firestoreConnect } from 'react-redux-firebase';
 
 class ItemsList extends React.Component {
+    
     render() {
+        let counter = 0;
         const todoList = this.props.todoList;
         const items = todoList.items;
         console.log("ItemsList: todoList.id " + todoList.id);
@@ -13,8 +15,12 @@ class ItemsList extends React.Component {
             <div className="todo-lists section">
                 {items && items.map(function(item) {
                     item.id = item.key;
+                    item.index = counter;
+                    counter++;
                     return (
-                        <ItemCard todoList={todoList} item={item} />
+                        <ItemCard todoList={todoList} item={item} 
+                        //swapAbove = {this.props.swapAbove}
+                        />
                     );})
                 }
                 <div className = "add-item green lighten-4" id = "add-item-button">

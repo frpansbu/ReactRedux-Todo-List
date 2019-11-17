@@ -24,7 +24,7 @@ class ItemCard extends React.Component {
                         className="red"
                         small
                         >
-                        <Button floating large className="blue">&#x21e7;</Button>
+                        <Button floating large className="blue" /*onClick = {this.props.swapAbove}*/>&#x21e7;</Button>
                         <Button floating large className="green">&#x21e9;</Button>
                         <Button floating large className="red">&#10005;</Button>
                     </Button>

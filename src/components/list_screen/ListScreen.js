@@ -13,6 +13,9 @@ class ListScreen extends Component {
     state = {
         name: '',
         owner: '',
+        incTask: false,
+        incDate: false,
+        incStatus: false,
     }
 
     handleChange = (e) => {
@@ -39,6 +42,58 @@ class ListScreen extends Component {
         const todoList = this.props.todoList;
         this.props.history.push("/");
         fireStore.collection('todoLists').doc(todoList.id).delete();
+    }
+
+    sortByTask = () =>{
+        const todoList = this.props.todoList;
+        const fireStore = getFirestore();
+        let temp = todoList.items;
+        if(this.state.incTask == false){
+            temp.sort((a,b) => (a.description > b.description) ? 1 : -1);
+            this.setState({incTask: true})
+        }else{
+            temp.sort((a,b) => (a.description > b.description) ? -1 : 1);
+            this.setState({incTask: false})
+        }
+        fireStore.collection("todoLists").doc(todoList.id).update({
+            items: temp
+        });
+    }
+
+    sortByDate = () =>{
+        const todoList = this.props.todoList;
+        const fireStore = getFirestore();
+        let temp = todoList.items;
+        if(this.state.incDate == false){
+            temp.sort((a,b) => (a.due_date > b.due_date) ? 1 : -1);
+            this.setState({incDate: true})
+        }else{
+            temp.sort((a,b) => (a.due_date > b.due_date) ? -1 : 1);
+            this.setState({incDate: false})
+        }
+        fireStore.collection("todoLists").doc(todoList.id).update({
+            items: temp
+        });
+    }
+
+    sortByStatus = () =>{
+        const todoList = this.props.todoList;
+        const fireStore = getFirestore();
+        let temp = todoList.items;
+        if(this.state.incStatus== false){
+            temp.sort((a,b) => (a.completed > b.completed) ? 1 : -1);
+            this.setState({incStatus: true})
+        }else{
+            temp.sort((a,b) => (a.completed > b.completed) ? -1 : 1);
+            this.setState({incStatus: false})
+        }
+        fireStore.collection("todoLists").doc(todoList.id).update({
+            items: temp
+        });
+    }
+
+    swapAbove = () =>{
+
     }
 
     render() {
@@ -76,11 +131,12 @@ class ListScreen extends Component {
                     <input className="active" type="text" name="owner" id="owner" onChange={this.handleChange} defaultValue={todoList.owner} />
                 </div>
                 <div className = "column-headers red lighten-2">
-                    <div className = "task-header">Task</div>
-                    <div className = "due-date-header" >Due Date</div>
-                    <div className = "status-header" >Status</div>
+                    <div className = "task-header" onClick = {this.sortByTask}>Task</div>
+                    <div className = "due-date-header" onClick = {this.sortByDate}>Due Date</div>
+                    <div className = "status-header" onClick = {this.sortByStatus}>Status</div>
                 </div>
-                <ItemsList todoList={todoList} />
+                <ItemsList todoList={todoList} 
+                swapAbove = {this.swapAbove}/>
             </div>
         );
     }
