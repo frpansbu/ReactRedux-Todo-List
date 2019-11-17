@@ -2,6 +2,10 @@ import React from 'react';
 import {Icon, Button} from 'react-materialize'
 
 class ItemCard extends React.Component {
+    test = () =>{
+        console.log("test" + this.props.item.index);
+    }
+
     render() {
         const { item } = this.props;  
         let statusText = "Completed";
@@ -11,8 +15,9 @@ class ItemCard extends React.Component {
             statusText = "Pending";
         }
         
+        
         return (
-            <div className="card z-depth-0 todo-list-link pink lighten-4">
+            <div className="card z-depth-0 todo-list-link pink lighten-4" onClick = {this.test}>
                 <div className="card-content grey-text text-darken-3">
                     <span className="card-title">{item.description}</span>    
                     <span className = "card-assigned">Assigned To: {item.assigned_to}</span>

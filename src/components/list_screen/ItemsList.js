@@ -6,6 +6,10 @@ import { firestoreConnect } from 'react-redux-firebase';
 
 class ItemsList extends React.Component {
     
+    test = () =>{
+        console.log("add item");
+    }
+
     render() {
         let counter = 0;
         const todoList = this.props.todoList;
@@ -23,7 +27,9 @@ class ItemsList extends React.Component {
                         />
                     );})
                 }
-                <div className = "add-item green lighten-4" id = "add-item-button">
+                <div className = "add-item green lighten-4" id = "add-item-button"
+                onClick = {this.test}
+                >
                     +
                 </div>
             </div>
