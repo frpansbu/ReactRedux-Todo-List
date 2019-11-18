@@ -5,10 +5,20 @@ import ItemCard from './ItemCard';
 import { firestoreConnect } from 'react-redux-firebase';
 
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 //import ItemScreen from '../item_screen/ItemScreen.js';
 
 class ItemsList extends React.Component {
-    
+    addItem = () =>{
+        const todoList = this.props.todoList;
+        
+        //this.props.history.push('/todoList/' + todoList.id + '/item/' + this.todoList.length);
+        return(
+            <Link to={'/todoList/' + todoList.id + '/item/' + todoList.length}>
+
+            </Link>
+        )
+    }
     render() {
         let counter = 0;
         const todoList = this.props.todoList;
@@ -27,7 +37,7 @@ class ItemsList extends React.Component {
                     );})
                 }
                 <div className = "add-item green lighten-4" id = "add-item-button"
-                onClick = {this.test}
+                onClick = {this.addItem.bind(this)}
                 >
                     +
                 </div>
@@ -49,4 +59,6 @@ export default compose(
     firestoreConnect([
         { collection: 'todoLists' },
     ]),
+    
 )(ItemsList);
+
