@@ -74,7 +74,7 @@ form button, form h5 {
 #list_trash {
   position: absolute;
   left: 90%;
-  
+  font-size: 40px;
   
 }
 .seperator {
@@ -100,6 +100,16 @@ form button, form h5 {
   left: 92%;
   top: 35%;
   padding: 0%;
+  
+}
+
+.btn-large{
+  font-size: 40px;
+  color: white;
+}
+
+.fixed-action-btn.direction-left ul{
+  right: 32px;
 }
 
 .list_item_card_completed, .list_item_card_not_completed{
