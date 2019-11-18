@@ -1,10 +1,13 @@
 import React from 'react';
 import {Icon, Button} from 'react-materialize'
 import {getFirestore} from 'redux-firestore';
-
+import {Link} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 class ItemCard extends React.Component {
     
-    moveUp = () =>{
+    moveUp = (e) =>{
+        e.stopPropagation();
         const fireStore = getFirestore();
         const todoList = this.props.todoList;
         const temp = todoList.items;
@@ -19,7 +22,8 @@ class ItemCard extends React.Component {
         });
     }
 
-    moveDown = () =>{
+    moveDown = (e) =>{
+        e.stopPropagation();
         const fireStore = getFirestore();
         const todoList = this.props.todoList;
         const temp = todoList.items;
@@ -34,7 +38,8 @@ class ItemCard extends React.Component {
         });
     }
 
-    deleteItem = () =>{
+    deleteItem = (e) =>{
+        e.stopPropagation();
         const fireStore = getFirestore();
         const todoList = this.props.todoList;
         const temp = todoList.items;
@@ -47,6 +52,16 @@ class ItemCard extends React.Component {
         fireStore.collection("todoLists").doc(todoList.id).update({
             items: temp
         });
+    }
+
+    editItem = (e) =>{
+        const todoList = this.props.todoList;
+        /*return(
+            <Link to={'/todoList/' + todoList.id + '/item/' + this.props.item.id} key={todoList.id}>
+            </Link>
+        )*/
+        this.props.history.push('/todoList/' + todoList.id + '/item/' + this.props.item.id);
+        
     }
 
     render() {
@@ -71,6 +86,7 @@ class ItemCard extends React.Component {
                         fab={{direction: 'left'}}
                         className="red"
                         small
+                        onClick = {this.editItem.bind(this)}
                         >
                         <Button floating large className="blue" onClick={this.moveUp.bind(this)}>&#x21e7;</Button>
                         <Button floating large className="green" onClick={this.moveDown.bind(this)}>&#x21e9;</Button>
@@ -81,4 +97,4 @@ class ItemCard extends React.Component {
         );
     }
 }
-export default ItemCard;
+export default withRouter(ItemCard);

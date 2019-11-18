@@ -4,8 +4,11 @@ import { compose } from 'redux';
 import ItemCard from './ItemCard';
 import { firestoreConnect } from 'react-redux-firebase';
 
-class ItemsList extends React.Component {
+import { Link } from 'react-router-dom';
+//import ItemScreen from '../item_screen/ItemScreen.js';
 
+class ItemsList extends React.Component {
+    
     render() {
         let counter = 0;
         const todoList = this.props.todoList;
@@ -18,9 +21,9 @@ class ItemsList extends React.Component {
                     item.index = counter;
                     counter++;
                     return (
-                        <ItemCard todoList={todoList} item={item} 
-    
-                        />
+                        //<Link to={'/todoList/' + todoList.id + '/item/' + item.id} key={todoList.id}>
+                            <ItemCard todoList={todoList} item={item} />
+                        //</Link>
                     );})
                 }
                 <div className = "add-item green lighten-4" id = "add-item-button"

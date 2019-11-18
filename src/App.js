@@ -30,7 +30,7 @@ class App extends Component {
               <Route path="/register" component={RegisterScreen} />
               <Route path="/login" component={LoginScreen} />
               <Route path="/todoList/:id" component={ListScreen} />
-              <Route path = "/todoList/:id/item/:index" component = {ItemScreen}/>
+              <Route path = "/todoList/:id/item/:id" component = {ItemScreen}/>
               <Route path="/:any" component={HomeScreen} />
             </Switch>
           </div>
