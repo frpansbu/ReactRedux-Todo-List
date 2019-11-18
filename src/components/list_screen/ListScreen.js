@@ -101,9 +101,7 @@ class ListScreen extends Component {
         });
     }
 
-    swapAbove = () =>{
-
-    }
+    
 
     render() {
         const auth = this.props.auth;
@@ -147,7 +145,7 @@ class ListScreen extends Component {
                     <div className = "status-header" onClick = {this.sortByStatus}>Status</div>
                 </div>
                 <ItemsList todoList={todoList} 
-                swapAbove = {this.swapAbove}/>
+                />
             </div>
         );
     }

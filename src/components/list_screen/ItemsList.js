@@ -5,10 +5,6 @@ import ItemCard from './ItemCard';
 import { firestoreConnect } from 'react-redux-firebase';
 
 class ItemsList extends React.Component {
-    
-    test = () =>{
-        console.log("add item");
-    }
 
     render() {
         let counter = 0;
@@ -23,7 +19,7 @@ class ItemsList extends React.Component {
                     counter++;
                     return (
                         <ItemCard todoList={todoList} item={item} 
-                        //swapAbove = {this.props.swapAbove}
+    
                         />
                     );})
                 }
