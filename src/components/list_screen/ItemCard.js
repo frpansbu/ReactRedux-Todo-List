@@ -39,8 +39,9 @@ class ItemCard extends React.Component {
         const todoList = this.props.todoList;
         const temp = todoList.items;
         const index = this.props.item.index;
-        for(var i = index; i < temp.length; i++){
-            temp[index] = temp[index+1];
+        
+        for(var i = index; i < this.props.todoList.items.length - 1; i++){
+            temp[i] = temp[i+1];
         }
         temp.pop();
         fireStore.collection("todoLists").doc(todoList.id).update({
