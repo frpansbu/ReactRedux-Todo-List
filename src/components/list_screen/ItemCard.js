@@ -60,7 +60,7 @@ class ItemCard extends React.Component {
             <Link to={'/todoList/' + todoList.id + '/item/' + this.props.item.id} key={todoList.id}>
             </Link>
         )*/
-        this.props.history.push('/todoList/' + todoList.id + '/item/' + this.props.item.id);
+        this.props.history.push('/todoList/' + todoList.id + '/item/' + this.props.item.index);
         
     }
 

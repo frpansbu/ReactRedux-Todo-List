@@ -1,13 +1,114 @@
 import React from 'react';
 import {getFirestore} from 'redux-firestore';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { withRouter } from 'react-router-dom';
 
 class ItemScreen extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    state = {
+            newDesc: '',
+            newAssign: '',
+            newDate: '',
+            newStatus: false,
+    }
+    
+    
+
+    goBack = () =>{
+        var str = window.location.href;
+        var listID = str.substr(
+            str.lastIndexOf("List/") + 5, str.lastIndexOf("/item")
+        );
+        listID = listID.substr(
+            0, listID.indexOf("/")
+        );
+        this.props.history.push('/todoList/' + listID);
+    }
+
+    changeDesc = (e) =>{
+        const { target } = e;
+        this.setState({newDesc: target.value});
+        console.log(this.state.newDesc)
+    }
+    changeAssign = (e) =>{
+        const { target } = e;
+        this.setState({newAssign: target.value});
+        console.log(this.state.newAssign)
+    }
+    changeDate = (e) =>{
+        const { target } = e;
+        this.setState({newDate: target.value});
+        console.log(this.state.newDate)
+    }
+    
+    submit = () =>{
+        const fireStore = getFirestore();
+        var str = window.location.href;
+        var listID = str.substr(
+            str.lastIndexOf("List/") + 5, str.lastIndexOf("/item")
+        );
+        listID = listID.substr(
+            0, listID.indexOf("/")
+        );
+        var itemIndex = str.substr(
+            str.lastIndexOf("/") + 1, str.length
+        )
+        console.log(this.state.newDesc)
+        console.log(this.state.newAssign)
+        console.log(this.state.newDate)
+        console.log(this.newStatus)
+        const key = Math.floor(Math.random() * 100 + 30)
+        console.log("key: "+ key);
+        console.log("index: " + itemIndex);
+        const newItem = {
+            "key": key,
+            "description": this.state.newDesc,
+            "due_date": this.state.newDate,
+            "assigned_to": this.state.newAssign,
+            "completed": this.state.newStatus
+        }
+        
+    }
     render(){
+        
         return(
-        <div>Hello World</div>
+            <div>
+            <h3 id="item_heading">Item</h3>
+            <div id="item_form_container">
+                <div id="item_description_prompt" class="item_prompt">Description:</div>
+                <input id="item_description_textfield" class="item_input" type="input" 
+                defaultValue = {this.state.newDesc}
+                onChange = {this.changeDesc}
+                />
+                <div id="item_assigned_to_prompt" class="item_prompt">Assigned To:</div>
+                <input id="item_assigned_to_textfield" class="item_input" type="input" 
+                defaultValue = {this.state.newAssign}
+                onChange = {this.changeAssign}
+                />
+                <div id="item_due_date_prompt" class="item_prompt">Due Date:</div>
+                <input id="item_due_date_picker" class="item_input" type="date" 
+                defaultValue = {this.state.newDate}
+                onChange = {this.changeDate}
+                />
+                
+                
+                
+            </div>
+                <button id="item_form_submit_button" class="item_button"
+                onClick = {this.submit.bind(this)}
+                >Submit</button>
+                <button id="item_form_cancel_button" class="item_button"
+                onClick = {this.goBack.bind(this)}
+                >Cancel</button>
+            </div>
+        
         )
     }
     
 }
 
-export default ItemScreen;
+export default withRouter(ItemScreen);
