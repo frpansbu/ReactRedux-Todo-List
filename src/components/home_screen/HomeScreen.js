@@ -15,7 +15,7 @@ class HomeScreen extends Component {
             name: "New List",
             owner: "",
             items: []
-        })
+        });
     }
 
     render() {

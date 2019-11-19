@@ -49,10 +49,10 @@ class ListScreen extends Component {
         const fireStore = getFirestore();
         let temp = todoList.items;
         if(this.state.incTask == false){
-            temp.sort((a,b) => (a.description > b.description) ? 1 : -1);
+            temp.sort((a,b) => (a.description.toUpperCase() > b.description.toUpperCase()) ? 1 : -1);
             this.setState({incTask: true})
         }else{
-            temp.sort((a,b) => (a.description > b.description) ? -1 : 1);
+            temp.sort((a,b) => (a.description.toUpperCase() > b.description.toUpperCase()) ? -1 : 1);
             this.setState({incTask: false})
         }
         for(var i = 0; i < temp.length; i++){
