@@ -60,26 +60,42 @@ class ItemScreen extends React.Component{
         );
         var itemIndex = str.substr(
             str.lastIndexOf("/") + 1, str.length
-        )
-        console.log(this.state.newDesc)
-        console.log(this.state.newAssign)
-        console.log(this.state.newDate)
-        console.log(this.newStatus)
-        const key = Math.floor(Math.random() * 100 + 30)
-        console.log("key: "+ key);
-        console.log("index: " + itemIndex);
+        );
+        var todoListRef = fireStore.collection("todoLists").doc(listID);
+        var value = (Math.floor(Math.random() * 1000 + 30));
+        /*if(itemIndex != -1){
+            todoListRef.get().then(function(doc){
+                if (doc.exists){
+                    console.log(doc.data().items[itemIndex].key);
+                    value = (doc.data().items[itemIndex].key);
+                    
+                }
+            });
+        }*/
+
         const newItem = {
-            "key": key,
+            "key": value,
             "description": this.state.newDesc,
             "due_date": this.state.newDate,
             "assigned_to": this.state.newAssign,
             "completed": this.state.newStatus
         }
-        var todoListRef = fireStore.collection("todoLists").doc(listID);
+
+        console.log(this.state.newDesc)
+        console.log(this.state.newAssign)
+        console.log(this.state.newDate)
+        console.log(this.newStatus)
+        console.log("key: "+ value);
+        console.log("index: " + itemIndex);
+        
         todoListRef.get().then(function(doc){
             if (doc.exists){
                 let temp = (doc.data().items);
-                temp[itemIndex] = newItem;
+                if(itemIndex != -1){
+                    temp[itemIndex] = newItem;
+                }else{
+                    temp.push(newItem);
+                }
                 fireStore.collection("todoLists").doc(listID).update({
                     items: temp
                 });
@@ -93,7 +109,6 @@ class ItemScreen extends React.Component{
             0, listID.indexOf("/")
         );
         this.props.history.push('/todoList/' + listID);
-        
     }
     render(){
         

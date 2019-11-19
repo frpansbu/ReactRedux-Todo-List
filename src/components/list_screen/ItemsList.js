@@ -38,8 +38,12 @@ class ItemsList extends React.Component {
                 }
                 <div className = "add-item green lighten-4" id = "add-item-button"
                 onClick = {this.addItem.bind(this)}
+                
                 >
-                    +
+                <Link to={'/todoList/' + todoList.id + '/item/' + -1} key={todoList.id}>
+                +
+                </Link>
+                    
                 </div>
             </div>
         );
