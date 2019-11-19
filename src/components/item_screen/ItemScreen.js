@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { withRouter } from 'react-router-dom';
+import uuid from 'uuid';
 
 class ItemScreen extends React.Component{
     constructor(props){
@@ -62,7 +63,7 @@ class ItemScreen extends React.Component{
             str.lastIndexOf("/") + 1, str.length
         );
         var todoListRef = fireStore.collection("todoLists").doc(listID);
-        var value = (Math.floor(Math.random() * 1000 + 30));
+        var value = uuid.v4();
         /*if(itemIndex != -1){
             todoListRef.get().then(function(doc){
                 if (doc.exists){
