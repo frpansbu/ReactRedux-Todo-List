@@ -32,17 +32,21 @@ class ItemScreen extends React.Component{
     changeDesc = (e) =>{
         const { target } = e;
         this.setState({newDesc: target.value});
-        console.log(this.state.newDesc)
+        
     }
     changeAssign = (e) =>{
         const { target } = e;
         this.setState({newAssign: target.value});
-        console.log(this.state.newAssign)
+        
     }
     changeDate = (e) =>{
         const { target } = e;
         this.setState({newDate: target.value});
-        console.log(this.state.newDate)
+        
+    }
+    changeStatus = (e) =>{
+        const { target } = e;
+        this.setState({newStatus: target.checked});
     }
     
     submit = () =>{
@@ -71,6 +75,24 @@ class ItemScreen extends React.Component{
             "assigned_to": this.state.newAssign,
             "completed": this.state.newStatus
         }
+        var todoListRef = fireStore.collection("todoLists").doc(listID);
+        todoListRef.get().then(function(doc){
+            if (doc.exists){
+                let temp = (doc.data().items);
+                temp[itemIndex] = newItem;
+                fireStore.collection("todoLists").doc(listID).update({
+                    items: temp
+                });
+            }
+        })
+        var str = window.location.href;
+        var listID = str.substr(
+            str.lastIndexOf("List/") + 5, str.lastIndexOf("/item")
+        );
+        listID = listID.substr(
+            0, listID.indexOf("/")
+        );
+        this.props.history.push('/todoList/' + listID);
         
     }
     render(){
@@ -94,6 +116,15 @@ class ItemScreen extends React.Component{
                 defaultValue = {this.state.newDate}
                 onChange = {this.changeDate}
                 />
+                <p>
+                    <label>
+                    <input type="checkbox" 
+                    defaultValue = {this.state.newDate}
+                    onChange = {this.changeStatus}
+                    />
+                    <span>Completed?</span>
+                    </label>
+                </p>
                 
                 
                 
